@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: subosito/flutter-actions@v1
+    - uses: subosito/flutter-actions@v1.3.2
     - run: flutter pub get
     #TODO: add `flutter test`
     - run: flutter build apk
