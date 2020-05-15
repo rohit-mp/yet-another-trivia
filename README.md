@@ -1,6 +1,6 @@
-# yetanothertrivia
+# Yet Another Trivia
 
-A Trivia Application
+A simple flutter trivia application built using the [Open Trivia Database](https://opentdb.com/).  
 
 ## Getting Started
 
