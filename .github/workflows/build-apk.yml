@@ -11,8 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
+    - uses: actions/setup-java@v1
+      with: 
+        java-version: '12.x'
     - uses: subosito/flutter-actions@v1.3.2
+      with:
+        flutter-version: '1.17.0'
+        channel: 'stable'
+    - run: dart --version
+    - run: flutter --version
     - run: flutter pub get
     #TODO: add `flutter test`
     - run: flutter build apk
