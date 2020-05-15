@@ -19,8 +19,20 @@ jobs:
       with:
         flutter-version: '1.17.0'
         channel: 'stable'
-    - run: dart --version
-    - run: flutter --version
-    - run: flutter pub get
-    #TODO: add `flutter test`
-    - run: flutter build apk
+    - name: Build APKs
+      run: |
+        flutter pub get
+        flutter build apk --release 
+        flutter build apk --release --split-per-abi
+    - name: Add and Commit APKs
+      run: |
+        mkdir -p output
+        cp build/app/outputs/flutter-apk/* output/
+        git add output
+        git commit -m "Update APKs"
+    - name: Push APKs
+      uses: ad-m/github-push-action@master
+      with:
+        branch: deployment
+        github_token: ${{ secret.GITHUB_TOKEN }}
+        force: true
