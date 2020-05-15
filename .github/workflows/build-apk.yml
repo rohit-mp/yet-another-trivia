@@ -34,5 +34,5 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         branch: deployment
-        github_token: ${{ secret.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         force: true
