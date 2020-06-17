@@ -36,31 +36,32 @@ jobs:
         branch: deployment
         github_token: ${{ secrets.GITHUB_TOKEN }}
         force: true
-#     - name: Create Release
-#       id: create-release
-#       uses: actions/create-release@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }}
-#       with:
-#         tag_name: ${{ github.ref }}
-#         release_name: Release ${{ github.ref }}
-#         draft: false
-#         prerelease: false
-#     - name: Upload Release Assets
-#       id: upload-release-assets
-#       uses: actions/upload-release-asset@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create-release.outputs.upload_url }}
-#         asset_path: build/app/outputs/flutter-apk/*
-    - name: Release
-      uses: "marvinpinto/action-automatic-releases@v1.0.0"
+    - name: Create Release
+      id: create-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }}
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        prerelease: true
-        title: "Latest Build"
-        files: |
-          build/app/output/flutter-apk/*
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./build/app/outputs/flutter-apk/app-release.apk
+        asset_name: app-release.apk
+        asset_content_type: application/java-archive
+#     - name: Release
+#       uses: "marvinpinto/action-automatic-releases@v1.0.0"
+#       with:
+#         repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#         automatic_release_tag: "latest"
+#         prerelease: true
+#         title: "Latest Build"
+#         files: |
+#           build/app/output/flutter-apk/*
       
