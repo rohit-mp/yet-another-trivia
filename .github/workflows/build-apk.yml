@@ -37,7 +37,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         force: true
     - name: Update release
-      uses: johnwbyrd/update-release@v1
+      uses: johnwbyrd/update-release@master
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         files: ./build/app/outputs/flutter-apk/app-release.apk ./build/app/outputs/flutter-apk/app-arm64-v8a-release.apk ./build/app/outputs/flutter-apk/app-x86_64-release.apk ./build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
