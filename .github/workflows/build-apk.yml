@@ -55,7 +55,7 @@ jobs:
 #         upload_url: ${{ steps.create-release.outputs.upload_url }}
 #         asset_path: build/app/outputs/flutter-apk/*
     - name: Release
-      uses: "marvinpinto/action-automatic-releases@v1"
+      uses: "marvinpinto/action-automatic-releases@v1.0.0"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
