@@ -42,8 +42,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: "latest"
-        release_name: Latest
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
     - name: Upload Release Assets
@@ -55,13 +55,30 @@ jobs:
         asset_path: ./build/app/outputs/flutter-apk/app-release.apk
         asset_name: app-release.apk
         asset_content_type: application/java-archive
-#     - name: Release
-#       uses: "marvinpinto/action-automatic-releases@v1.0.0"
-#       with:
-#         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-#         automatic_release_tag: "latest"
-#         prerelease: true
-#         title: "Latest Build"
-#         files: |
-#           build/app/output/flutter-apk/*
-      
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+        asset_name: app-arm64-v8a-release.apk
+        asset_content_type: application/java-archive
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./build/app/outputs/flutter-apk/app-x86_64-release.apk
+        asset_name: app-x86_64-release.apk
+        asset_content_type: application/java-archive
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+        asset_name: app-armeabi-v7a-release.apk
+        asset_content_type: application/java-archive
