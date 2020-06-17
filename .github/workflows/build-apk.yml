@@ -35,7 +35,7 @@ jobs:
       with:
         branch: deployment
         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         force: true
+        force: true
 #     - name: Create Release
 #       id: create-release
 #       uses: actions/create-release@v1
